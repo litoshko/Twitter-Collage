@@ -1,0 +1,18 @@
+﻿using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+
+namespace web_twitter_collage.Models
+{
+    public class LoadUserViewModel
+    {
+        [DisplayName("User Name:")]
+        [Required]
+        [DataType(DataType.Text)]
+        public string Text { get; set; }
+
+
+        public string Response { get; set; }
+    }
+}
