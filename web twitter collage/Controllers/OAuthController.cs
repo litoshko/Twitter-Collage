@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Threading.Tasks;
 using System.Configuration;
 using LinqToTwitter;
+using ImageMagick;
 
 namespace web_twitter_collage.Controllers
 {

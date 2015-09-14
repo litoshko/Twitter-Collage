@@ -7,6 +7,9 @@ using System.Configuration;
 using System.Threading.Tasks;
 using LinqToTwitter;
 using web_twitter_collage.Models;
+using ImageMagick;
+
+
 
 namespace web_twitter_collage.Controllers
 {
@@ -47,7 +50,7 @@ namespace web_twitter_collage.Controllers
                         await
                         (from friend in ctx.Friendship
                          where friend.Type == FriendshipType.FriendsList &&
-                         friend.ScreenName == user.Text &&
+                         friend.ScreenName == user.Text.Trim() &&
                          friend.Cursor == cursor
                          select friend).SingleOrDefaultAsync();
 
@@ -59,17 +62,21 @@ namespace web_twitter_collage.Controllers
 
                         friendship.Users.ForEach(friend =>
                         {
-                            urls.Add(friend.ProfileImageUrl);
+                            urls.Add(friend.ProfileImageUrl.Replace("normal","bigger"));
                             counts.Add(friend.StatusesCount);
                         }
                         );
                     }
                 } while (cursor != 0);
 
+                //begin generate image collage from urls
+                //create image collection
+                ViewBag.ImageData = ImageProcessing(urls);
+
                 var responseTweetVM = new LoadUserViewModel
                 {
                     Text = user.Text,
-                    Response = urls[0] + counts[0].ToString()
+                    Response = "Collage loaded"
                 };
 
                 return View(responseTweetVM);
@@ -80,112 +87,38 @@ namespace web_twitter_collage.Controllers
             }
             return View();
         }
-    }
 
-    public class TwitterCollage
-    {
-        static string username = "";
-        static List<string> urls = new List<string>();
-        static List<int> counts = new List<int>();
-        static string errors = "";
-
-        public static void LoadUserInfo( string inUserName )
+        byte[] GenerateCollage(MagickImageCollection collection)
         {
-            username = inUserName;
-
-            Task loadTask = RunUser();
-            loadTask.Wait();
-            //try
-            //{
-            //    Task loadTask = RunUser();
-            //    loadTask.Wait();
-            //}
-            //catch (Exception ex)
-            //{
-            //    errors = ex.ToString();
-            //}
+            MontageSettings settings = new MontageSettings();
+            settings.BackgroundColor = new MagickColor("#FFF");
+            settings.Geometry = new MagickGeometry(73);
+            using (MagickImage result = collection.Montage(settings))
+            {
+                result.Format = MagickFormat.Png;
+                return result.ToByteArray();
+            }
         }
 
-        private static async Task RunUser()
+        string ImageProcessing(List<string> urls)
         {
-            var auth = new MvcAuthorizer
+            byte[] imageByteData = null;
+            byte[] data = null;
+            using (MagickImageCollection collection = new MagickImageCollection())
             {
-                CredentialStore = new SessionStateCredentialStore()
-            };
-
-            var ctx = new TwitterContext(auth);
-
-            Friendship friendship;
-
-            long cursor = -1;
-            do
-            {
-                friendship =
-                    await
-                    (from friend in ctx.Friendship
-                     where friend.Type == FriendshipType.FriendsList &&
-                     friend.ScreenName == username &&
-                     friend.Cursor == cursor
-                     select friend)
-                     .SingleOrDefaultAsync();
-
-                if (friendship != null &&
-                    friendship.Users != null &&
-                    friendship.CursorMovement != null)
+                for (int i = 0; i < urls.Count; i++)
                 {
-                    cursor = friendship.CursorMovement.Next;
-
-                    friendship.Users.ForEach(friend =>
-                    {
-                        urls.Add(friend.ProfileImageUrl);
-                        counts.Add(friend.StatusesCount);
-                    }
-                    );
-
+                    imageByteData = new System.Net.WebClient().DownloadData(urls[i]);
+                    MagickImage image = new MagickImage(imageByteData);
+                    collection.Add(image);
                 }
-            } while (cursor != 0);
 
-            //await ShowUserDetailsAsync(ctx);
+                data = GenerateCollage(collection);
+            }
 
-        }
-
-        private static async Task ShowUserDetailsAsync(TwitterContext twitterCtx)
-        {
-            // TODO: add protection against rate limits
-            Friendship friendship;
-            
-            long cursor = -1;
-            do
-            {
-                friendship =
-                    await
-                    (from friend in twitterCtx.Friendship
-                     where friend.Type == FriendshipType.FriendsList &&
-                     friend.ScreenName == username &&
-                     friend.Cursor == cursor
-                     select friend)
-                     .SingleOrDefaultAsync();
-
-                if (friendship != null &&
-                    friendship.Users != null &&
-                    friendship.CursorMovement != null)
-                {
-                    cursor = friendship.CursorMovement.Next;
-
-                    friendship.Users.ForEach(friend =>
-                    {
-                        urls.Add(friend.ProfileImageUrl);
-                        counts.Add(friend.StatusesCount);
-                    }
-                    );
-
-                }
-            } while (cursor != 0);
-        }
-
-        public static string Errors()
-        {
-            return errors;
+            string imageBase64Data = Convert.ToBase64String(data/*imageByteData*/);
+            string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
+            return imageDataURL;
         }
     }
 }

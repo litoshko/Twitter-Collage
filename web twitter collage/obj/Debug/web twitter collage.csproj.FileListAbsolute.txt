@@ -45,3 +45,8 @@ D:\Documents\Visual Studio 2015\Projects\Web twitter collage\web twitter collage
 D:\Documents\Visual Studio 2015\Projects\Web twitter collage\web twitter collage\bin\System.Web.Mvc.xml
 D:\Documents\Visual Studio 2015\Projects\Web twitter collage\web twitter collage\obj\Debug\web twitter collage.dll
 D:\Documents\Visual Studio 2015\Projects\Web twitter collage\web twitter collage\obj\Debug\web twitter collage.pdb
+D:\Documents\Visual Studio 2015\Projects\Web twitter collage\web twitter collage\bin\Magick.NET-AnyCPU.dll
+D:\Documents\Visual Studio 2015\Projects\Web twitter collage\web twitter collage\bin\Magick.NET.Core.dll
+D:\Documents\Visual Studio 2015\Projects\Web twitter collage\web twitter collage\bin\Magick.NET-AnyCPU.xml
+D:\Documents\Visual Studio 2015\Projects\Web twitter collage\web twitter collage\bin\Magick.NET.Core.xml
+D:\Documents\Visual Studio 2015\Projects\Web twitter collage\web twitter collage\obj\Debug\web twitter collage.csprojResolveAssemblyReference.cache
