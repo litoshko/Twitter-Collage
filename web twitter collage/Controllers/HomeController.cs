@@ -20,8 +20,14 @@ namespace web_twitter_collage.Controllers
         {
             if (!new SessionStateCredentialStore().HasAllCredentials())
                 return RedirectToAction("Index", "OAuth");
-            
-            return View();
+            var TweetVM = new LoadUserViewModel
+            {
+                Text = "",
+                size = 300,
+                Response = ""
+            };
+
+            return View(TweetVM);
         }
 
         // POST: Home
@@ -33,7 +39,7 @@ namespace web_twitter_collage.Controllers
             {
                 CredentialStore = new SessionStateCredentialStore()
             };
-
+            
             var ctx = new TwitterContext(auth);
 
             Friendship friendship;
@@ -42,8 +48,12 @@ namespace web_twitter_collage.Controllers
 
             List<string> urls = new List<string>();
             List<int> counts = new List<int>();
+            //load profile picture urls and tweets count using linq2twitter
             try
             {
+                if (user.size < 24 || user.size > 2000)
+                    throw new Exception("Size out of bounds. Min size: 24, Max size: 2000");
+
                 do
                 {
                     friendship =
@@ -69,13 +79,14 @@ namespace web_twitter_collage.Controllers
                     }
                 } while (cursor != 0);
 
-                //begin generate image collage from urls
-                //create image collection
-                ViewBag.ImageData = ImageProcessing(urls);
+                //generate image collage from urls
+                ViewBag.ImageData = ImageProcessing(urls, user.size);
 
+                //genrate status response
                 var responseTweetVM = new LoadUserViewModel
                 {
                     Text = user.Text,
+                    size = user.size,
                     Response = "Collage loaded"
                 };
 
@@ -88,7 +99,8 @@ namespace web_twitter_collage.Controllers
             return View();
         }
 
-        byte[] GenerateCollage(MagickImageCollection collection)
+        //Create single sized collage from image collection
+        byte[] GenerateCollage(MagickImageCollection collection, int size)
         {
             MontageSettings settings = new MontageSettings();
             settings.BackgroundColor = new MagickColor("#FFF");
@@ -96,11 +108,13 @@ namespace web_twitter_collage.Controllers
             using (MagickImage result = collection.Montage(settings))
             {
                 result.Format = MagickFormat.Png;
+                result.Resize(new MagickGeometry(size));
                 return result.ToByteArray();
             }
         }
 
-        string ImageProcessing(List<string> urls)
+        //Load images from twitter, process them into collage
+        string ImageProcessing(List<string> urls, int size)
         {
             byte[] imageByteData = null;
             byte[] data = null;
@@ -109,11 +123,11 @@ namespace web_twitter_collage.Controllers
                 for (int i = 0; i < urls.Count; i++)
                 {
                     imageByteData = new System.Net.WebClient().DownloadData(urls[i]);
-                    MagickImage image = new MagickImage(imageByteData);
-                    collection.Add(image);
+                    MagickImage tmpImage = new MagickImage(imageByteData);
+                    collection.Add(tmpImage);
                 }
 
-                data = GenerateCollage(collection);
+                data = GenerateCollage(collection, size);
             }
 
             string imageBase64Data = Convert.ToBase64String(data/*imageByteData*/);

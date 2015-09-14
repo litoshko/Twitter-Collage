@@ -11,6 +11,10 @@ namespace web_twitter_collage.Models
         [Required]
         [DataType(DataType.Text)]
         public string Text { get; set; }
+        [DisplayName("Collage image size:")]
+        [Required]
+        [DataType(DataType.Text)]
+        public int size { get; set; }
 
 
         public string Response { get; set; }

@@ -28,6 +28,10 @@
                 @Html.TextBoxFor(model => model.Text, new { @class = "form-control", rows = "3" })
                 @Html.ValidationMessageFor(model => model.Text)
             </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.size, new { @class = "form-control", rows = "3" })
+                @Html.ValidationMessageFor(model => model.size)
+            </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
