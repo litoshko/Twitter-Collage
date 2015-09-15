@@ -29,7 +29,7 @@ namespace web_twitter_collage.Controllers
                 }
             };
 
-            string twitterCallbackUrl = Url.Action("Complete", "OAuth", null, Request.Url.Scheme);
+            string twitterCallbackUrl = "http://twittercollage.apphb.com/"; //Url.Action("Complete", "OAuth", null, Request.Url.Scheme);
             return await auth.BeginAuthorizationAsync(new Uri(twitterCallbackUrl));
         }
 
