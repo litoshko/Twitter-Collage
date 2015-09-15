@@ -15,6 +15,9 @@ namespace web_twitter_collage.Models
         [Required]
         [DataType(DataType.Text)]
         public int size { get; set; }
+        [DisplayName("Resize images proportionally to tweets count:")]
+        [Required]
+        public bool Resize { get; set; }
 
 
         public string Response { get; set; }

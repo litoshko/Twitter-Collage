@@ -35,6 +35,7 @@ namespace web_twitter_collage.Controllers
         [ActionName("Index")]
         public async Task<ActionResult> TweetAsync(LoadUserViewModel user)
         {
+            //load OAuth credentials
             var auth = new MvcAuthorizer
             {
                 CredentialStore = new SessionStateCredentialStore()
@@ -80,7 +81,7 @@ namespace web_twitter_collage.Controllers
                 } while (cursor != 0);
 
                 //generate image collage from urls
-                ViewBag.ImageData = ImageProcessing(urls, user.size);
+                ViewBag.ImageData = ImageProcessing(urls, user.size, counts, user.Resize);
 
                 //genrate status response
                 var responseTweetVM = new LoadUserViewModel
@@ -116,27 +117,195 @@ namespace web_twitter_collage.Controllers
         }
 
         //Load images from twitter, process them into collage
-        string ImageProcessing(List<string> urls, int size)
+        string ImageProcessing(List<string> urls, int size, List<int> counts, bool resize)
         {
             byte[] imageByteData = null;
             byte[] data = null;
+            // Load images into collection
             using (MagickImageCollection collection = new MagickImageCollection())
             {
-
-                Random rand = new Random();
+                
                 for (int i = 0; i < urls.Count; i++)
                 {
                     imageByteData = new System.Net.WebClient().DownloadData(urls[i]);
                     MagickImage tmpImage = new MagickImage(imageByteData);
                     collection.Add(tmpImage);
                 }
+                // generade byte array for collage from images collection
+                if (resize)
+                {
+                    //collage with proportional images
+                    SizableImages simages = new SizableImages(counts);
+                    List<SizableImage> arrangedImages = simages.GetImages();
+                    int width = simages.GetXBottom() - simages.GetXTop();
+                    int height = simages.GetYBottom() - simages.GetYTop();
 
-                data = GenerateCollage(collection, size);
+                    int maxDimension;
+
+                    if (width < height)
+                    {
+                        maxDimension = height;
+                    }
+                    else
+                    {
+                        maxDimension = width;
+                    }
+
+                    double correction = (double)size / maxDimension;
+
+
+                    MagickReadSettings settings = new MagickReadSettings();
+                    settings.Width = (int)(width * correction);
+                    settings.Height = (int)(height * correction);
+                    using (MagickImage image = new MagickImage("xc:white", settings))
+                    {
+                        for (int i = 0; i < arrangedImages.Count(); i++)
+                        {
+                            collection[
+                                arrangedImages[i].id
+                                ].Resize(new MagickGeometry((int)(arrangedImages[i].size * correction)));
+                            image.Composite(collection[arrangedImages[i].id],
+                                (int)(arrangedImages[i].positionX * correction),
+                                (int)(arrangedImages[i].positionY * correction));
+                        }
+                        //image.Resize(new MagickGeometry(size));
+                        image.Format = MagickFormat.Png;
+                        data = image.ToByteArray();
+                    }
+                }
+                else
+                {
+                    //collage with single sized images
+
+                    data = GenerateCollage(collection, size);
+                }
             }
-
+            // convert byte array to data url
             string imageBase64Data = Convert.ToBase64String(data/*imageByteData*/);
             string imageDataURL = string.Format("data:image/png;base64,{0}", imageBase64Data);
             return imageDataURL;
+        }
+    }
+
+    class SizableImage
+    {
+        public int id;
+        public int size;
+        public int positionX;
+        public int positionY;
+    }
+
+    class SizableImages
+    {
+        List<SizableImage> images = new List<SizableImage>();
+        int tweetsTotalCount = 0;
+        int MAX_SIZE = 300;
+        int x_top = 0;
+        int y_top = 0;
+        int x_bottom = 0;
+        int y_bottom = 0;
+        bool arranged = false;
+
+        public SizableImages(List<int> counts)
+        {
+            for (int i = 0; i < counts.Count(); i++)
+            {
+                tweetsTotalCount = counts.Sum();
+                SizableImage simage = new SizableImage();
+                simage.id = i;
+                simage.size = 1 + (int)(MAX_SIZE * (double)counts[i] / tweetsTotalCount);
+                simage.positionX = 0;
+                simage.positionY = 0;
+                images.Add(simage);
+            }
+            images.Sort((x, y) => (-x.size).CompareTo(-y.size));
+        }
+
+        void ArrangeImages()
+        {
+            arranged = true;
+            
+            x_bottom = images[0].size;
+            y_bottom = images[0].size;
+            int box_x_top = 0;
+            int box_y_top = 0;
+            int box_x_bottom = 0;
+            int box_y_bottom = 0;
+            bool vertical = true;
+            for (int i = 1; i < images.Count(); i++)
+            {
+                if (images[i].size < box_x_bottom - box_x_top &&
+                    images[i].size < box_y_bottom - box_y_top)
+                {
+                    images[i].positionX = box_x_top;
+                    images[i].positionY = box_y_top;
+                    if (vertical)
+                        box_y_top += images[i].size;
+                    else
+                        box_x_top += images[i].size;
+                }
+                else if (x_bottom - x_top <= y_bottom - y_top)
+                {
+                    box_x_top = x_bottom;
+                    box_y_top = y_top;
+                    box_x_bottom = x_bottom + images[i].size;
+                    box_y_bottom = y_bottom;
+                    x_bottom = box_x_bottom;
+                    y_bottom = box_y_bottom;
+                    images[i].positionX = box_x_top;
+                    images[i].positionY = box_y_top;
+                    box_y_top += images[i].size;
+                    vertical = true;
+                }
+                else
+                {
+                    box_x_top = x_top;
+                    box_y_top = y_bottom;
+                    box_x_bottom = x_bottom;
+                    box_y_bottom = y_bottom + images[i].size;
+                    x_bottom = box_x_bottom;
+                    y_bottom = box_y_bottom;
+                    images[i].positionX = box_x_top;
+                    images[i].positionY = box_y_top;
+                    box_x_top += images[i].size;
+                    vertical = false;
+                }
+            }
+        }
+
+        public List<SizableImage> GetImages()
+        {
+            if (!arranged)
+                ArrangeImages();
+            return images;
+        }
+
+        public int GetXTop()
+        {
+            if (!arranged)
+                ArrangeImages();
+            return x_top;
+        }
+
+        public int GetYTop()
+        {
+            if (!arranged)
+                ArrangeImages();
+            return y_top;
+        }
+
+        public int GetXBottom()
+        {
+            if (!arranged)
+                ArrangeImages();
+            return x_bottom;
+        }
+
+        public int GetYBottom()
+        {
+            if (!arranged)
+                ArrangeImages();
+            return y_bottom;
         }
     }
 }
