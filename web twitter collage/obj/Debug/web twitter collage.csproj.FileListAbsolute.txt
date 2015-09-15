@@ -102,3 +102,23 @@ D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web
 D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\obj\Debug\web twitter collage.csprojResolveAssemblyReference.cache
 D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\obj\Debug\web twitter collage.dll
 D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\obj\Debug\web twitter collage.pdb
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\Microsoft.CSharp.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.ComponentModel.DataAnnotations.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Configuration.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Data.DataSetExtensions.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Data.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Drawing.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.EnterpriseServices.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.IO.Compression.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Net.Http.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Net.Http.WebRequest.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Web.ApplicationServices.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Web.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Web.DynamicData.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Web.Entity.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Web.Extensions.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Web.Services.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Xml.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Xml.Linq.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\Magick.NET.Wrapper-x86.dll
