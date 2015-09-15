@@ -1,0 +1,10 @@
+﻿
+@{
+    ViewBag.Title = "Redirected to twitter authorization";
+}
+
+<h2>Authorize with twitter</h2>
+@Html.ActionLink("Click here to authorize","Begin", "OAuth")
+
+<img src="@ViewBag.ImageData" />
+<h4>@ViewBag.errors</h4>

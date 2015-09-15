@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using LinqToTwitter;
 using web_twitter_collage.Models;
 using ImageMagick;
+using System.IO;
 
 
 
@@ -271,6 +272,14 @@ namespace web_twitter_collage.Controllers
                     vertical = false;
                 }
             }
+            StreamWriter writer;
+            writer = new StreamWriter("D:\\urls.txt");
+            writer.WriteLine(images.Count());
+            for (int i = 0; i < images.Count(); i++)
+            {
+                writer.WriteLine($"{images[i].id} {images[i].positionX} {images[i].positionY} {images[i].size}");
+            }
+            writer.Close();
         }
 
         public List<SizableImage> GetImages()
