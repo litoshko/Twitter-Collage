@@ -50,3 +50,55 @@ D:\Documents\Visual Studio 2015\Projects\Web twitter collage\web twitter collage
 D:\Documents\Visual Studio 2015\Projects\Web twitter collage\web twitter collage\bin\Magick.NET-AnyCPU.xml
 D:\Documents\Visual Studio 2015\Projects\Web twitter collage\web twitter collage\bin\Magick.NET.Core.xml
 D:\Documents\Visual Studio 2015\Projects\Web twitter collage\web twitter collage\obj\Debug\web twitter collage.csprojResolveAssemblyReference.cache
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\roslyn\csc.exe
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\roslyn\System.Collections.Immutable.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\roslyn\System.Reflection.Metadata.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\roslyn\vbc.exe
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\roslyn\VBCSCompiler.exe
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\roslyn\VBCSCompiler.exe.config
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\web twitter collage.dll.config
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\web twitter collage.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\web twitter collage.pdb
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\LinqToTwitter.AspNet.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\LinqToTwitterPcl.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\Magick.NET-AnyCPU.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\Magick.NET.Core.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\Microsoft.Web.Infrastructure.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Net.Http.Extensions.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Net.Http.Primitives.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Reactive.Core.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Reactive.Interfaces.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Reactive.Linq.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Reactive.PlatformServices.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Web.Helpers.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Web.Mvc.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Web.Razor.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Web.Webpages.Deployment.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Web.Webpages.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Web.Webpages.Razor.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\Magick.NET-AnyCPU.xml
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\Magick.NET.Core.xml
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Net.Http.Extensions.xml
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Net.Http.Primitives.xml
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Reactive.Core.xml
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Reactive.Interfaces.xml
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Reactive.Linq.xml
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Reactive.PlatformServices.xml
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Web.Razor.xml
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Web.Webpages.xml
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Web.Webpages.Deployment.xml
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Web.Webpages.Razor.xml
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Web.Helpers.xml
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\bin\System.Web.Mvc.xml
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\obj\Debug\web twitter collage.csproj.App.config
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\obj\Debug\web twitter collage.csprojResolveAssemblyReference.cache
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\obj\Debug\web twitter collage.dll
+D:\Documents\Visual Studio 2015\Projects\Litoshko Andriy\web twitter collage\web twitter collage\obj\Debug\web twitter collage.pdb

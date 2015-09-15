@@ -102,9 +102,11 @@ namespace web_twitter_collage.Controllers
         //Create single sized collage from image collection
         byte[] GenerateCollage(MagickImageCollection collection, int size)
         {
-            MontageSettings settings = new MontageSettings();
+            MontageMode mode = MontageMode.Concatenate;
+
+            MontageSettings settings = new MontageSettings(mode);
             settings.BackgroundColor = new MagickColor("#FFF");
-            settings.Geometry = new MagickGeometry(73);
+            settings.Geometry = new MagickGeometry("1x1<");
             using (MagickImage result = collection.Montage(settings))
             {
                 result.Format = MagickFormat.Png;
@@ -120,6 +122,8 @@ namespace web_twitter_collage.Controllers
             byte[] data = null;
             using (MagickImageCollection collection = new MagickImageCollection())
             {
+
+                Random rand = new Random();
                 for (int i = 0; i < urls.Count; i++)
                 {
                     imageByteData = new System.Net.WebClient().DownloadData(urls[i]);
