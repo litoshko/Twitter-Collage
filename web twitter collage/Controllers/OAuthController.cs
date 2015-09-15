@@ -29,7 +29,8 @@ namespace web_twitter_collage.Controllers
                 }
             };
 
-            string twitterCallbackUrl = "http://twittercollage.apphb.com/OAuth/Complete"; //Url.Action("Complete", "OAuth", null, Request.Url.Scheme);
+            string twitterCallbackUrl = "http://twittercollage.apphb.com/OAuth/Complete";
+            //string twitterCallbackUrl = Url.Action("Complete", "OAuth", null, Request.Url.Scheme);
             return await auth.BeginAuthorizationAsync(new Uri(twitterCallbackUrl));
         }
 

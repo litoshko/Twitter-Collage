@@ -28,13 +28,13 @@
                 @Html.TextBoxFor(model => model.Text, new { @class = "form-control", rows = "3" })
                 @Html.ValidationMessageFor(model => model.Text)
             </div>
+            @Html.LabelFor(model => model.size, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.LabelFor(model => model.size)
                 @Html.TextBoxFor(model => model.size, new { @class = "form-control", rows = "3" })
                 @Html.ValidationMessageFor(model => model.size)
             </div>
+            @Html.LabelFor(model => model.Resize, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.LabelFor(model => model.Resize)
                 @Html.CheckBoxFor(model => model.Resize)
             </div>
         </div>
