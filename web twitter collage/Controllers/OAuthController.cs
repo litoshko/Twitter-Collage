@@ -25,25 +25,30 @@ namespace web_twitter_collage.Controllers
                 CredentialStore = new SessionStateCredentialStore
                 {
                     ConsumerKey = ConfigurationManager.AppSettings["consumerKey"],
-                    ConsumerSecret = ConfigurationManager.AppSettings["consumerSecret"]
+                    ConsumerSecret = ConfigurationManager.AppSettings["consumerSecret"],
+                    OAuthToken = ConfigurationManager.AppSettings["oauthToken"],
+                    OAuthTokenSecret = ConfigurationManager.AppSettings["oauthTokenSecret"]
                 }
             };
 
-            string twitterCallbackUrl = "http://twittercollage.apphb.com/OAuth/Complete";
-            //string twitterCallbackUrl = Url.Action("Complete", "OAuth", null, Request.Url.Scheme);
-            return await auth.BeginAuthorizationAsync(new Uri(twitterCallbackUrl));
-        }
-
-        public async Task<ActionResult> CompleteAsync()
-        {
-            var auth = new MvcAuthorizer
-            {
-                CredentialStore = new SessionStateCredentialStore()
-            };
-
-            await auth.CompleteAuthorizeAsync(Request.Url);
+            await Task.Delay(0).ConfigureAwait(false);
 
             return RedirectToAction("Index", "Home");
+            //string twitterCallbackUrl = "http://twittercollage.apphb.com/OAuth/Complete";
+            //string twitterCallbackUrl = Url.Action("Complete", "OAuth", null, Request.Url.Scheme);
+            //return await auth.BeginAuthorizationAsync(new Uri(twitterCallbackUrl));
         }
+
+        //public async Task<ActionResult> CompleteAsync()
+        //{
+        //    var auth = new MvcAuthorizer
+        //    {
+        //        CredentialStore = new SessionStateCredentialStore()
+        //    };
+
+        //    await auth.CompleteAuthorizeAsync(Request.Url);
+
+        //    return RedirectToAction("Index", "Home");
+        //}
     }
 }

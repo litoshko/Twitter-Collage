@@ -20,7 +20,7 @@ namespace web_twitter_collage.Controllers
         public ActionResult Index()
         {
             if (!new SessionStateCredentialStore().HasAllCredentials())
-                return RedirectToAction("Index", "OAuth");
+                return RedirectToAction("Begin", "OAuth");
             var TweetVM = new LoadUserViewModel
             {
                 Text = "",
