@@ -34,11 +34,14 @@ namespace web_twitter_collage.Controllers
             await Task.Delay(0).ConfigureAwait(false);
 
             return RedirectToAction("Index", "Home");
+
+            // These strings were used with deprecated method below (CompleteAsync)
             //string twitterCallbackUrl = "http://twittercollage.apphb.com/OAuth/Complete";
             //string twitterCallbackUrl = Url.Action("Complete", "OAuth", null, Request.Url.Scheme);
             //return await auth.BeginAuthorizationAsync(new Uri(twitterCallbackUrl));
         }
 
+        // This method is deprecated.
         //public async Task<ActionResult> CompleteAsync()
         //{
         //    var auth = new MvcAuthorizer

@@ -36,6 +36,10 @@ namespace web_twitter_collage.Controllers
         [ActionName("Index")]
         public async Task<ActionResult> TweetAsync(LoadUserViewModel user)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(user);
+            }
             //load OAuth credentials
             var auth = new MvcAuthorizer
             {
@@ -50,7 +54,7 @@ namespace web_twitter_collage.Controllers
 
             List<string> urls = new List<string>();
             List<int> counts = new List<int>();
-            //load profile picture urls and tweets count using linq2twitter
+            // load profile picture urls and tweets count using linq2twitter
             try
             {
                 if (user.size < 24 || user.size > 2000)
@@ -81,10 +85,10 @@ namespace web_twitter_collage.Controllers
                     }
                 } while (cursor != 0);
 
-                //generate image collage from urls
+                // generate image collage from urls
                 ViewBag.ImageData = ImageProcessing(urls, user.size, counts, user.Resize);
 
-                //genrate status response
+                // genrate status response
                 var responseTweetVM = new LoadUserViewModel
                 {
                     Text = user.Text,
@@ -101,7 +105,7 @@ namespace web_twitter_collage.Controllers
             return View();
         }
 
-        //Create single sized collage from image collection
+        // Create single sized collage from image collection
         byte[] GenerateCollage(MagickImageCollection collection, int size)
         {
             MontageMode mode = MontageMode.Concatenate;
@@ -117,7 +121,7 @@ namespace web_twitter_collage.Controllers
             }
         }
 
-        //Load images from twitter, process them into collage
+        // Load images from twitter, process them into collage
         string ImageProcessing(List<string> urls, int size, List<int> counts, bool resize)
         {
             byte[] imageByteData = null;
@@ -135,7 +139,7 @@ namespace web_twitter_collage.Controllers
                 // generade byte array for collage from images collection
                 if (resize)
                 {
-                    //collage with proportional images
+                    // collage with proportional images
                     SizableImages simages = new SizableImages(counts);
                     List<SizableImage> arrangedImages = simages.GetImages();
                     int width = simages.GetXBottom() - simages.GetXTop();
@@ -169,15 +173,13 @@ namespace web_twitter_collage.Controllers
                                 (int)(arrangedImages[i].positionX * correction),
                                 (int)(arrangedImages[i].positionY * correction));
                         }
-                        //image.Resize(new MagickGeometry(size));
                         image.Format = MagickFormat.Png;
                         data = image.ToByteArray();
                     }
                 }
                 else
                 {
-                    //collage with single sized images
-
+                    // collage with single sized images
                     data = GenerateCollage(collection, size);
                 }
             }
